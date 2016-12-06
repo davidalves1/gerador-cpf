@@ -1,2 +1,2 @@
-# gerador-cnpj
-Gerador de CNPJ para ser utilizado em testes de sistemas
+# gerador-cpf
+Gerador de CPF para ser utilizado em testes de sistemas
