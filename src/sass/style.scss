@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100);
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+// Remove seleção para mobile
+@mixin user-select($none) {
+    -webkit-user-select: $none;
+    -moz-user-select: $none;
+    -ms-user-select: $none;
+    user-select: $none;
+}
+
+@mixin transition($options) {
+    transition: $options;
+    -o-transition: $options;
+    -moz-transition: $options;
+    -webkit-transition: $options;
+}
+
+:root {
+    margin: 0;
+    padding: 0;
+}
+
+$default-color: #005000;
+
+body {
+    background-color: $default-color !important;
+}
+
+.card {
+    font-family: 'Roboto', Tahoma, sans-serif;
+    height: 300px;
+    margin-top: 50%;
+    background-image: radial-gradient(circle, rgba(250, 250, 255, .95) 70%,  rgba(240, 240, 255, .95) 100%);;
+    @include box-shadow(5px, 5px, 12px, #222);
+
+    .card-header {
+        height: 100px;
+        color: #333;
+        // background-color: lighten($default-color, 30%);
+        padding: 10px;
+    }
+
+    .card-body {
+        height: 100px;
+        padding: 10px;
+        padding-top: 40px;
+
+        .input-text{
+            height: 50px;
+            font-size: 18px;
+        }
+    }
+
+    .card-footer {
+        height: 100px;
+        padding: 10px;
+        padding-top: 40px;
+    }
+}
+
+.btn-card {
+    background-color: lighten($default-color, 15%);
+    color: white;
+    height: 3em;
+    min-width: 88px;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    letter-spacing: 0;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 3px;
+
+    @include user-select(none);
+
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover {
+        color: #FFF !important;
+        background-color: lighten($default-color, 20%);
+    }
+}
+
+.aviso {
+    color: #FFF !important;
+    text-align: center;
+}
+
+.btn-custom {
+    height: 50px;
+    background-color: #DDD;
+
+    @include transition(all 0.3s ease-in-out);
+
+    &:hover {
+        background-color: #BBB;
+    }
+}
+
+/* Estilo do Github corner */
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+// @keyframes octocat-wave {0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes $animation-name {
+        @content;
+    }
+    @-moz-keyframes $animation-name {
+        @content;
+    }
+    @keyframes $animation-name {
+        @content;
+    }
+}
+
+@include keyframes(octocat-wave) {
+    0%,100% {transform:rotate(0)}
+    20%,60% {transform:rotate(-25deg)}
+    40%,80% {transform:rotate(10deg)}
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm { 
+        animation:none
+    }
+    .github-corner .octo-arm {
+        animation:octocat-wave 560ms ease-in-out
+    }
+}
